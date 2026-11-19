@@ -1,0 +1,7 @@
+# app-ads.txt d'ÉCHO : Petite Voix
+# À placer à la racine du site indiqué comme « site du développeur » dans les deux stores,
+# par exemple https://ton-site.fr/app-ads.txt
+# Quand tu as ton identifiant d'éditeur AdMob (AdMob > Paramètres > Informations sur le compte),
+# enlève le « # » de la dernière ligne et remplace pub-XXXXXXXXXXXXXXXX par cet identifiant.
+# La dernière valeur est l'identifiant de Google : ne la modifie pas.
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

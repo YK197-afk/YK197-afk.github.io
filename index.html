@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!--
+  Site d'ÉCHO : Petite Voix — présentation, assistance, lien vers la politique de confidentialité.
+  Éditeur : NEO TECH · contact : support@neotechmali.com · en ligne : https://yk197-afk.github.io/
+  Quand le jeu sera publié : remplacer les deux pastilles « bientôt » par les badges officiels Apple et Google.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#05060a">
+<title>ÉCHO : Petite Voix · un jeu dans le noir</title>
+<meta name="description" content="Tu es une petite chauve-souris aveugle. Crie pour voir la grotte, tais-toi pour marquer. 30 niveaux, 6 actes, sur iPhone et Android.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ÉCHO : Petite Voix">
+<meta property="og:description" content="Tu es aveugle. Ta voix est ta seule lumière. Un jeu d'arcade dans le noir total, sur iPhone et Android.">
+<meta property="og:url" content="https://yk197-afk.github.io/">
+<meta property="og:image" content="https://yk197-afk.github.io/img/partage.jpg">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="fonts/lexend-zetta-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Lexend Zetta";src:url(fonts/lexend-zetta-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url(fonts/atkinson-hyperlegible-next-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url(fonts/atkinson-hyperlegible-next-latin-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url(fonts/atkinson-hyperlegible-next-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{
+  --bg:#05060a;--c:#7ef9ff;--g:#ffe08a;
+  --t1:#eafcff;--t2:#c3d8de;--t3:#93abb4;
+  --line:rgba(126,249,255,.2);
+  --fd:"Lexend Zetta","Avenir Next",system-ui,sans-serif;
+  --f:"Atkinson Hyperlegible Next","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --wrap:min(1120px,100% - 2*clamp(20px,5vw,56px));
+}
+*{box-sizing:border-box}
+html{background:var(--bg);color:var(--t1);scrollbar-color:rgba(126,249,255,.35) var(--bg);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font:400 18px/1.6 var(--f);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:rgba(126,249,255,.32);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(126,249,255,.28);border-radius:10px;border:2px solid var(--bg)}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:6px}
+a{color:var(--c);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{color:#fff}
+h1,h2,h3{margin:0;font-weight:600}
+p{margin:0}
+.wrap{width:var(--wrap);margin-inline:auto}
+.skip{position:absolute;left:12px;top:-60px;z-index:10;background:#fff;color:#05060a;padding:10px 14px;border-radius:8px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.i{width:1.1em;height:1.1em;vertical-align:-.18em;flex:none}
+
+/* ---------- héros : la page est la grotte ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+#cave{position:absolute;inset:0;z-index:-1;display:block}
+.hero .wrap{padding-block:clamp(88px,14vh,140px) clamp(150px,30vh,260px)}
+.logo{font:600 clamp(64px,14vw,148px)/1 var(--fd);color:#f2feff;margin:0 0 0 -.04em;
+  text-shadow:0 0 24px rgba(126,249,255,.7),0 .16em 0 rgba(126,249,255,.22),0 .32em 0 rgba(126,249,255,.1),0 .48em 0 rgba(126,249,255,.04)}
+.logo small{display:block;font:400 italic clamp(19px,2.4vw,26px)/1.3 var(--f);color:var(--t2);text-shadow:none;margin-top:clamp(30px,5.4vw,78px);letter-spacing:.01em}
+.lead{max-width:30ch;margin-top:clamp(26px,4vh,40px);font-size:clamp(19px,2.2vw,23px);line-height:1.5;color:#e2f2f5;text-wrap:pretty}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:34px}
+.cry{font:700 15px/1 var(--f);letter-spacing:.16em;color:#effeff;background:rgba(12,28,36,.7);border:1.5px solid var(--c);border-radius:40px;padding:0 28px;min-height:52px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 0 22px rgba(126,249,255,.3)}
+.cry:hover{background:rgba(126,249,255,.14)}
+.cry:active{transform:scale(.97)}
+.cry .i{width:22px;height:22px;color:var(--c)}
+.hint{font-size:15px;color:var(--t3)}
+.stores{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.store{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:12px;color:var(--t2);font-size:15px}
+.store b{color:var(--t1)}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(76px,11vw,136px)}
+section+section{border-top:1px solid rgba(126,249,255,.08)}
+h2{font:600 clamp(23px,3.4vw,38px)/1.22 var(--fd);text-transform:uppercase;color:#f2feff;text-wrap:balance;max-width:24ch}
+.prose{max-width:60ch;margin-top:22px;color:var(--t2);text-wrap:pretty}
+.prose+.prose{margin-top:14px}
+.prose strong{color:var(--t1)}
+
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(196px,58vw,252px);gap:clamp(14px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 22px;margin:44px 0 0;list-style:none;scroll-padding-inline:2px;overscroll-behavior-x:contain}
+.strip li{scroll-snap-align:start}
+.strip figure{margin:0}
+.strip img{display:block;width:100%;height:auto;aspect-ratio:440/956;border-radius:22px;border:1px solid rgba(126,249,255,.24);background:#000;box-shadow:0 22px 50px rgba(0,0,0,.5)}
+.strip figcaption{margin-top:14px;font-size:16px;font-weight:700;color:var(--t1);line-height:1.35}
+.strip figcaption span{display:block;font-weight:400;font-size:15px;color:var(--t3);margin-top:3px}
+
+.story{display:grid;gap:clamp(36px,6vw,80px);grid-template-columns:1fr}
+@media (min-width:900px){.story{grid-template-columns:1.05fr .95fr;align-items:start}}
+.quote{margin:30px 0 0;font:italic 400 clamp(20px,2.3vw,25px)/1.5 var(--f);color:#ffe7b0;max-width:32ch;text-wrap:pretty}
+.descent{list-style:none;margin:0;padding:0;counter-reset:a}
+.descent li{--x:calc(var(--n) * clamp(14px,3vw,34px));margin-left:var(--x);padding:13px 0;display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(255,255,255,.06);font:600 clamp(14px,1.6vw,17px)/1.3 var(--fd);text-transform:uppercase;color:color-mix(in srgb,var(--ac) 80%,#fff)}
+.descent li::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--ac);box-shadow:0 0 12px var(--ac);transform:translateY(-1px)}
+.descent li small{font:700 13px/1 var(--f);letter-spacing:.12em;color:var(--t3);min-width:4.6em}
+.descent li.hid{color:var(--t3)}
+.descent li.hid::before{background:none;border:1.5px solid var(--ac);box-shadow:none}
+
+.numbers{font:400 clamp(21px,2.6vw,30px)/1.5 var(--f);color:var(--t2);max-width:36ch;text-wrap:pretty}
+.numbers b{font:600 1.18em/1 var(--fd);color:#f2feff;text-shadow:0 0 18px rgba(126,249,255,.45)}
+.fair{display:grid;gap:18px 48px;margin-top:48px;grid-template-columns:1fr}
+@media (min-width:820px){.fair{grid-template-columns:1fr 1fr}}
+.fair p{color:var(--t2);max-width:46ch}
+.fair p strong{display:block;color:var(--t1);margin-bottom:4px}
+
+/* ---------- assistance ---------- */
+.faq{margin-top:38px;max-width:820px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:60px;padding:14px 4px;font-weight:700;font-size:18px;color:var(--t1)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .i{width:20px;height:20px;color:var(--c);transition:transform .25s}
+.faq details[open] summary .i{transform:rotate(90deg)}
+.faq .ans{padding:0 4px 22px;color:var(--t2);max-width:64ch}
+.faq .ans p+p{margin-top:10px}
+.contact{margin-top:40px;max-width:64ch;color:var(--t2)}
+.contact strong{color:var(--t1)}
+
+footer{border-top:1px solid rgba(126,249,255,.08);padding-block:40px 56px;color:var(--t3);font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+footer a{color:var(--t2);display:inline-flex;align-items:center;min-height:44px}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.faq summary .i{transition:none}.cry:active{transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-waves" viewBox="0 0 24 24"><path d="M8.3 8.3a5.3 5.3 0 0 0 0 7.4 M15.7 8.3a5.3 5.3 0 0 1 0 7.4 M5.3 5.2a9.6 9.6 0 0 0 0 13.6 M18.7 5.2a9.6 9.6 0 0 1 0 13.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 12a2 2 0 1 1-4 0a2 2 0 1 1 4 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5.5L15.5 12L9 18.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.2 3.6H16.8A2.4 2.4 0 0 1 19.2 6V18A2.4 2.4 0 0 1 16.8 20.4H7.2A2.4 2.4 0 0 1 4.8 18V6A2.4 2.4 0 0 1 7.2 3.6Z M10.4 17.2H13.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="hero" id="top">
+  <canvas id="cave" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h1 class="logo">ÉCHO<small>Petite Voix</small></h1>
+    <p class="lead">Tu es une petite chauve-souris aveugle. Dans la Grotte-Mère, on ne voit pas avec les yeux&nbsp;: on voit avec la voix.</p>
+    <div class="cta">
+      <button class="cry" id="cry" type="button"><svg class="i" aria-hidden="true"><use href="#i-waves"/></svg>CRIER</button>
+      <span class="hint">ou touche le noir, n'importe où.</span>
+    </div>
+    <div class="stores" role="group" aria-label="Disponibilité">
+      <span class="store"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><b>iPhone</b>bientôt sur l'App Store</span>
+      <span class="store"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg><b>Android</b>bientôt sur Google Play</span>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+  <section id="jeu" aria-labelledby="t-jeu">
+    <div class="wrap">
+      <h2 id="t-jeu">Crie pour voir. <span style="white-space:nowrap">Tais-toi</span> pour marquer.</h2>
+      <p class="prose">Glisse ton doigt pour voler, lâche-le pour crier&nbsp;: ton écho dessine la grotte quelques secondes, puis le noir revient. À toi de te souvenir du chemin.</p>
+      <p class="prose">Plus tu restes silencieuse, plus ton multiplicateur grimpe, jusqu'à <strong>×8</strong>. Mais tu voles à l'aveugle, et certains habitants de la grotte écoutent.</p>
+      <ul class="strip" tabindex="0" aria-label="Captures du jeu, faire défiler horizontalement">
+        <li><figure><img src="img/jeu-1-echo.webp" width="480" height="1043" loading="lazy" alt="Le jeu : la chauve-souris au centre, l'onde de son cri révèle les parois de la grotte en bleu."><figcaption>L'écho révèle les parois<span>Quelques secondes de lumière, puis le noir.</span></figcaption></figure></li>
+        <li><figure><img src="img/jeu-2-cristal.webp" width="480" height="1043" loading="lazy" alt="Une barrière de cristal rose vole en éclats sous la chauve-souris."><figcaption>Un cri fort brise le cristal<span>Les barrières ne cèdent qu'à pleine voix.</span></figcaption></figure></li>
+        <li><figure><img src="img/jeu-3-silence.webp" width="480" height="1043" loading="lazy" alt="Le Silence, une masse violette aux yeux pâles, descend juste au-dessus de la chauve-souris."><figcaption>Le Silence te poursuit<span>À la fin de chaque acte, il faut le distancer.</span></figcaption></figure></li>
+        <li><figure><img src="img/jeu-4-memoire.webp" width="480" height="1043" loading="lazy" alt="Une Mémoire dorée retrouvée : une phrase d'un ancêtre s'affiche en lettres dorées."><figcaption>Les Mémoires dorées parlent<span>30 souvenirs cachés à retrouver.</span></figcaption></figure></li>
+        <li><figure><img src="img/jeu-5-carte.webp" width="480" height="1043" loading="lazy" alt="La carte des 30 niveaux, avec les étoiles gagnées et les actes encore verrouillés."><figcaption>30 niveaux en 6 actes<span>Trois étoiles à décrocher dans chacun.</span></figcaption></figure></li>
+        <li><figure><img src="img/jeu-6-dons.webp" width="480" height="1043" loading="lazy" alt="L'écran des Dons : portée du cri, mémoire de l'écho, souffle, avec leur prix en lucioles."><figcaption>Des Dons pour aller plus loin<span>Ta voix porte plus loin à chaque plongée.</span></figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="histoire" aria-labelledby="t-histoire">
+    <div class="wrap story">
+      <div>
+        <h2 id="t-histoire">Une vraie histoire, du premier cri au dernier.</h2>
+        <blockquote class="quote">« Mais depuis la dernière lune, les échos ne reviennent plus. Les anciens crient… et le noir se tait. »</blockquote>
+        <p class="prose">Descends à travers six actes pour comprendre ce qui est arrivé à la Grotte-Mère, et à ta mère. En chemin, 30 Mémoires dorées racontent ce que les autres ont tu.</p>
+      </div>
+      <ol class="descent" aria-label="Les six actes">
+        <li style="--n:0;--ac:#7ef9ff"><small>ACTE 1</small>La Gueule</li>
+        <li style="--n:1;--ac:#6effb9"><small>ACTE 2</small>Les Veines</li>
+        <li class="hid" style="--n:2;--ac:#be8cff"><small>ACTE 3</small><span aria-label="à découvrir">???</span></li>
+        <li class="hid" style="--n:3;--ac:#ff6982"><small>ACTE 4</small><span aria-label="à découvrir">???</span></li>
+        <li class="hid" style="--n:4;--ac:#ffe182"><small>ACTE 5</small><span aria-label="à découvrir">???</span></li>
+        <li class="hid" style="--n:5;--ac:#ffffff"><small>ACTE 6</small><span aria-label="à découvrir">???</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="chaque-jour" aria-labelledby="t-jour">
+    <div class="wrap">
+      <h2 id="t-jour">Toujours une raison de replonger.</h2>
+      <p class="numbers" style="margin-top:26px"><b>30</b> niveaux, <b>3</b> étoiles à gagner dans chacun, <b>30</b> Mémoires à retrouver, et chaque jour une grotte nouvelle, la même pour tout le monde.</p>
+      <div class="fair">
+        <p><strong>Gratuit, et correct avec toi.</strong>Les pubs n'interrompent jamais une partie&nbsp;: elles arrivent entre deux plongées, au plus une toutes les trois parties. Un achat les retire pour de bon.</p>
+        <p><strong>À écouter autant qu'à voir.</strong>Tous les sons naissent en direct, et chaque acte a sa mélodie, que tes cris jouent note après note. Avec un casque, c'est encore mieux. Jouable hors ligne.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="assistance" aria-labelledby="t-aide">
+    <div class="wrap">
+      <h2 id="t-aide">Assistance</h2>
+      <div class="faq">
+        <details><summary>Ma progression a disparu.<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>Ta progression est enregistrée sur ton téléphone, pas sur un serveur. Désinstaller le jeu ou effacer ses données la supprime, et elle ne passe pas d'un appareil à l'autre.</p></div></details>
+        <details><summary>Comment récupérer un achat&nbsp;?<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>Dans La Mue, touche «&nbsp;Restaurer mes achats&nbsp;», connecté au même compte Apple ou Google que lors de l'achat.</p><p>«&nbsp;Sans pub&nbsp;» et le Pack Fondateur se restaurent. Les lucioles achetées, elles, sont consommées et ne se restaurent pas.</p></div></details>
+        <details><summary>Je ne veux plus de publicités.<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>L'achat «&nbsp;Sans pub&nbsp;», ou le Pack Fondateur, retire les pubs entre les parties. Les vidéos qui offrent une récompense restent proposées, mais elles ne se lancent que si tu le choisis.</p></div></details>
+        <details><summary>Comment changer mes choix publicitaires&nbsp;?<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>Dans La Mue, touche «&nbsp;Choix publicitaires&nbsp;». Ce bouton apparaît quand la loi de ta région l'exige, en Europe par exemple.</p><p>Sur iPhone, le suivi publicitaire se règle aussi dans Réglages, Confidentialité et sécurité, Suivi. Sur Android, ton identifiant publicitaire se gère dans les réglages, rubrique Annonces.</p></div></details>
+        <details><summary>Le jeu utilise-t-il mon micro&nbsp;?<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>Non. Le cri est un geste&nbsp;: tu lâches l'écran. ÉCHO n'accède ni au micro, ni à la caméra, ni à tes contacts.</p></div></details>
+        <details><summary>Je n'entends rien.<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>Vérifie que le bouton SON du menu n'est pas coupé et, sur iPhone, que le mode silencieux est désactivé.</p></div></details>
+        <details><summary>Supprimer mes données<svg class="i" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+          <div class="ans"><p>Désinstaller le jeu efface ta progression. Pour les données liées à tes achats ou aux publicités, écris-nous&nbsp;: nous transmettrons la demande aux services concernés. Le détail est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p></div></details>
+      </div>
+      <p class="contact"><strong>Une autre question, un bug&nbsp;?</strong> Écris à <a href="mailto:support@neotechmali.com">support@neotechmali.com</a> en précisant le modèle de ton téléphone. Nous répondons en français.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ÉCHO : Petite Voix · © 2026 NEO TECH</span>
+    <nav aria-label="Pied de page"><a href="#assistance">Assistance</a><a href="confidentialite.html">Confidentialité</a></nav>
+  </div>
+</footer>
+
+<script>
+/* La grotte du héros : chaque cri dessine les parois un instant, comme dans le jeu. */
+(function(){
+  var hero=document.getElementById('top'),cv=document.getElementById('cave');
+  if(!cv||!cv.getContext)return;
+  var ctx=cv.getContext('2d'),mk=document.createElement('canvas'),m=mk.getContext('2d');
+  var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+  var V=760,FADE=1.8,TAU=Math.PI*2;
+  var W=0,H=0,D=1,bat={x:0,y:0},cw=300,spikes=[],crys=[],flies=[],pings=[],t=0,last=0,lastUser=-99,nextAuto=.7,inView=true,raf=0;
+  function wl(y){return bat.x-cw/2+Math.sin(y*.011+.6)*cw*.09+Math.sin(y*.029+2)*cw*.035}
+  function wr(y){return bat.x+cw/2+Math.sin(y*.012+2.4)*cw*.09+Math.sin(y*.031+.8)*cw*.035}
+  function build(){
+    var r=hero.getBoundingClientRect();W=Math.max(1,Math.round(r.width));H=Math.max(1,Math.round(r.height));D=Math.min(2,window.devicePixelRatio||1);
+    cv.width=mk.width=Math.round(W*D);cv.height=mk.height=Math.round(H*D);cv.style.width=W+'px';cv.style.height=H+'px';
+    var wide=W>=860;bat=wide?{x:W*.72,y:H*.46}:{x:W*.66,y:H*.8};cw=wide?Math.min(420,W*.3):Math.min(300,W*.62);
+    spikes=[];crys=[];flies=[];
+    var ys=[.16,.4,.64,.9];for(var k=0;k<ys.length;k++){var y=H*ys[k],left=k%2===0;spikes.push({y:y,left:left,len:cw*(.26+.06*(k%3)),h:26+8*(k%2)})}
+    crys.push({y:H*.28,left:false,lit:0},{y:H*.57,left:true,lit:0});
+    for(var i=0;i<7;i++)flies.push({x:0,y:0,ph:i*1.7,ox:(i%3-1)*.26,oy:(i/7-.45)*1.25,sp:.35+.1*(i%3)});
+  }
+  function wallPath(c,f,off){c.beginPath();for(var y=-20;y<=H+20;y+=8){var x=f(y)+off;y<=-20?c.moveTo(x,y):c.lineTo(x,y)}}
+  function drawCave(){
+    ctx.lineJoin='round';
+    for(var s=-1;s<=1;s+=2){var f=s<0?wl:wr;
+      for(var k=3;k>=1;k--){wallPath(ctx,f,s*k*(18+k*10));ctx.lineWidth=1;ctx.strokeStyle='rgba(126,249,255,'+(.22-.05*k)+')';ctx.stroke()}
+      wallPath(ctx,f,0);ctx.lineWidth=7;ctx.strokeStyle='rgba(126,249,255,.16)';ctx.stroke();ctx.lineWidth=2;ctx.strokeStyle='rgba(150,252,255,.95)';ctx.stroke()}
+    for(var i=0;i<spikes.length;i++){var p=spikes[i],x0=p.left?wl(p.y):wr(p.y),dir=p.left?1:-1;
+      ctx.beginPath();ctx.moveTo(x0-dir*4,p.y-p.h/2);ctx.lineTo(x0+dir*p.len,p.y+p.h*.15);ctx.lineTo(x0-dir*4,p.y+p.h/2);ctx.closePath();
+      ctx.fillStyle='#070b12';ctx.fill();ctx.lineWidth=2;ctx.strokeStyle='rgba(150,252,255,.95)';ctx.stroke()}
+  }
+  function drawCrystals(dt){for(var i=0;i<crys.length;i++){var q=crys[i],x=q.left?wl(q.y)+3:wr(q.y)-3,dir=q.left?1:-1,a=.45+.55*q.lit;q.lit=Math.max(0,q.lit-dt*.8);
+    var g=ctx.createRadialGradient(x,q.y,0,x,q.y,30);g.addColorStop(0,'rgba(255,120,220,'+(.35*a)+')');g.addColorStop(1,'rgba(255,120,220,0)');ctx.fillStyle=g;ctx.fillRect(x-30,q.y-30,60,60);
+    ctx.beginPath();ctx.moveTo(x,q.y-9);ctx.lineTo(x+dir*13,q.y);ctx.lineTo(x,q.y+9);ctx.closePath();ctx.fillStyle='rgba(255,140,225,'+(.6+.4*a)+')';ctx.fill()}}
+  function drawFlies(){for(var i=0;i<flies.length;i++){var f=flies[i],x=bat.x+f.ox*cw+Math.sin(t*f.sp+f.ph)*14,y=bat.y+f.oy*Math.min(H*.6,520)+Math.cos(t*f.sp*.8+f.ph)*10,fl=.65+.35*Math.sin(t*3+f.ph);
+    var g=ctx.createRadialGradient(x,y,0,x,y,12);g.addColorStop(0,'rgba(255,235,120,'+(.85*fl)+')');g.addColorStop(1,'rgba(255,200,80,0)');ctx.fillStyle=g;ctx.fillRect(x-12,y-12,24,24);
+    ctx.fillStyle='#fffbe0';ctx.beginPath();ctx.arc(x,y,2.1,0,TAU);ctx.fill()}}
+  function drawBat(){var f=RM.matches?0:Math.sin(t*5.5),bob=RM.matches?0:Math.sin(t*1.7)*4;
+    ctx.save();ctx.translate(bat.x,bat.y+bob);var s=1.7;ctx.scale(s,s);
+    var g=ctx.createRadialGradient(0,0,0,0,0,22);g.addColorStop(0,'rgba(220,210,255,.3)');g.addColorStop(1,'rgba(220,210,255,0)');ctx.fillStyle=g;ctx.fillRect(-22,-22,44,44);
+    ctx.fillStyle='#efeaff';
+    for(var sx=-1;sx<=1;sx+=2){ctx.save();ctx.scale(sx,1);ctx.beginPath();ctx.moveTo(2,-2);ctx.quadraticCurveTo(10,-9+f*6,18,-3+f*8);
+      ctx.lineTo(14,1+f*5);ctx.lineTo(11,-1+f*4);ctx.lineTo(8,3+f*3);ctx.lineTo(5,1+f*2);ctx.lineTo(2,4);ctx.closePath();ctx.fill();
+      ctx.beginPath();ctx.moveTo(1.5,-4.5);ctx.lineTo(3,-10);ctx.lineTo(.2,-6);ctx.closePath();ctx.fill();ctx.restore()}
+    ctx.beginPath();ctx.ellipse(0,0,3.6,6,0,0,TAU);ctx.fill();ctx.fillStyle='#05060a';ctx.fillRect(-2,-3.2,1.2,1.2);ctx.fillRect(.8,-3.2,1.2,1.2);
+    ctx.restore()}
+  function ping(x,y){pings.push({x:x,y:y,t0:t,R:Math.hypot(Math.max(x,W-x),Math.max(y,H-y))*.95});wake()}
+  function frame(now){
+    raf=0;var dt=last?Math.min(.05,(now-last)/1000):0;last=now;t+=dt;
+    if(!RM.matches&&inView&&t-lastUser>5&&t>nextAuto){ping(bat.x,bat.y);nextAuto=t+3.6}
+    ctx.setTransform(D,0,0,D,0,0);ctx.clearRect(0,0,W,H);drawCave();
+    m.setTransform(D,0,0,D,0,0);m.globalCompositeOperation='source-over';m.fillStyle='#05060a';m.fillRect(0,0,W,H);m.globalCompositeOperation='destination-out';
+    var alive=[];
+    for(var i=0;i<pings.length;i++){var p=pings[i],age=t-p.t0,r=p.still?p.R:Math.min(p.R,age*V),a=p.still?.55:age<p.R/V?1:Math.max(0,1-(age-p.R/V)/FADE);if(a<=0)continue;alive.push(p);
+      if(r>2){var g=m.createRadialGradient(p.x,p.y,0,p.x,p.y,r);g.addColorStop(0,'rgba(0,0,0,'+(a*.35)+')');g.addColorStop(.78,'rgba(0,0,0,'+(a*.82)+')');g.addColorStop(.97,'rgba(0,0,0,'+a+')');g.addColorStop(1,'rgba(0,0,0,0)');m.fillStyle=g;m.beginPath();m.arc(p.x,p.y,r,0,TAU);m.fill()}
+      if(!p.still)for(var j=0;j<crys.length;j++){var q=crys[j],qx=q.left?wl(q.y):wr(q.y),d=Math.hypot(qx-p.x,q.y-p.y);if(Math.abs(d-r)<30)q.lit=1}}
+    pings=alive;
+    ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(mk,0,0);ctx.setTransform(D,0,0,D,0,0);
+    for(var k=0;k<pings.length;k++){var q2=pings[k],ag=t-q2.t0,rr=Math.min(q2.R,ag*V);if(!q2.still&&ag*V<q2.R){ctx.beginPath();ctx.arc(q2.x,q2.y,rr,0,TAU);ctx.lineWidth=1.6;ctx.strokeStyle='rgba(126,249,255,'+(.55*(1-rr/q2.R))+')';ctx.stroke()}}
+    drawCrystals(dt);drawFlies();drawBat();
+    var moving=pings.some(function(p){return !p.still})||crys.some(function(c){return c.lit>0});
+    if(inView&&!document.hidden&&(!RM.matches||moving))raf=requestAnimationFrame(frame);else last=0;
+  }
+  function wake(){if(!raf&&!document.hidden){last=0;raf=requestAnimationFrame(frame)}}
+  hero.addEventListener('pointerdown',function(e){if(e.target.closest('a,button,.store'))return;var r=hero.getBoundingClientRect();lastUser=t;ping(e.clientX-r.left,e.clientY-r.top)});
+  document.getElementById('cry').addEventListener('click',function(){lastUser=t;ping(bat.x,bat.y)});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){inView=es[0].isIntersecting;if(inView)wake()}).observe(hero);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)wake()});
+  var rt=0;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){build();wake()},120)});
+  build();
+  if(RM.matches)pings.push({x:bat.x,y:bat.y,t0:0,R:Math.hypot(W,H),still:true});
+  wake();
+})();
+</script>
+</body>
+</html>
